@@ -1,23 +1,22 @@
 package com.ihusker.skills.resources.managers;
 
 import com.ihusker.skills.Skills;
-import com.ihusker.skills.interfaces.IManager;
 import com.ihusker.skills.resources.data.OptionData;
 import com.ihusker.skills.utilities.JsonStorage;
 
-public class OptionManager implements IManager {
+public class OptionManager {
 
     private OptionData data;
 
-    @Override
-    public void serialize() {
-        JsonStorage.write(Skills.getInstance(), "options", data);
-    }
-
-    @Override
     public void deserialize() {
         OptionData optionData = JsonStorage.read(Skills.getInstance(), "options", OptionData.class);
-        data = optionData == null ? new OptionData() : optionData;
+
+        if(optionData == null) {
+            optionData = new OptionData();
+            JsonStorage.write(Skills.getInstance(), "options", optionData);
+        }
+
+        data = optionData;
     }
 
     public OptionData getData() {

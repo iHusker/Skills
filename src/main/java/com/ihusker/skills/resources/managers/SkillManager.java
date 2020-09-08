@@ -1,7 +1,6 @@
 package com.ihusker.skills.resources.managers;
 
 import com.ihusker.skills.Skills;
-import com.ihusker.skills.interfaces.IManager;
 import com.ihusker.skills.resources.data.SkillData;
 import com.ihusker.skills.resources.SkillType;
 import com.ihusker.skills.utilities.Chat;
@@ -15,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class SkillManager implements IManager {
+public class SkillManager {
 
     private final Map<UUID, SkillData> data = new HashMap<>();
 
@@ -31,12 +30,10 @@ public class SkillManager implements IManager {
         data.remove(uuid);
     }
 
-    @Override
     public void serialize() {
         Skills.getInstance().getServer().getOnlinePlayers().forEach(player -> serialize(player.getUniqueId()));
     }
 
-    @Override
     public void deserialize() {
         Skills.getInstance().getServer().getOnlinePlayers().forEach(player -> deserialize(player.getUniqueId()));
     }

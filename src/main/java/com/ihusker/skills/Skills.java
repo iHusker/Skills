@@ -2,7 +2,6 @@ package com.ihusker.skills;
 
 import com.ihusker.skills.commands.SkillCommand;
 import com.ihusker.skills.listeners.*;
-import com.ihusker.skills.interfaces.IManager;
 import com.ihusker.skills.resources.managers.OptionManager;
 import com.ihusker.skills.resources.managers.SkillManager;
 import net.milkbowl.vault.economy.Economy;
@@ -39,7 +38,8 @@ public class Skills extends JavaPlugin {
                     new PlayerListener()
             );
 
-            Arrays.asList(skillManager, optionManager).forEach(IManager::deserialize);
+            optionManager.deserialize();
+            skillManager.deserialize();
         } else {
             getLogger().info("Disabling plugin as vault needs to be installed/enabled.");
             getServer().getPluginManager().disablePlugin(this);
@@ -48,7 +48,7 @@ public class Skills extends JavaPlugin {
 
     @EventHandler
     public void onDisable() {
-        if(economy != null) Arrays.asList(skillManager, optionManager).forEach(IManager::serialize);
+        if(economy != null) skillManager.serialize();
     }
 
     private boolean setupEconomy() {
