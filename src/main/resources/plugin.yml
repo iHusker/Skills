@@ -1,0 +1,9 @@
+name: Skills
+main: com.ihusker.skills.Skills
+version: ALPHA
+api-version: 1.16
+author: iHusker
+
+commands:
+  skills:
+    description: Displays your skills.
