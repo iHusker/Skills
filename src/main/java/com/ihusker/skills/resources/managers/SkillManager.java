@@ -20,22 +20,16 @@ public class SkillManager {
 
     public static final float CONSTANT = 0.1125f;
 
-    public void deserialize(UUID uuid) {
+    public void deserialize(Player player) {
+        UUID uuid = player.getUniqueId();
         SkillData skillData = JsonStorage.read(Skills.getInstance(), uuid.toString(), SkillData.class);
         data.put(uuid, skillData == null ? new SkillData() : skillData);
     }
 
-    public void serialize(UUID uuid) {
+    public void serialize(Player player) {
+        UUID uuid = player.getUniqueId();
         JsonStorage.write(Skills.getInstance(), uuid.toString(), data.get(uuid));
         data.remove(uuid);
-    }
-
-    public void serialize() {
-        Skills.getInstance().getServer().getOnlinePlayers().forEach(player -> serialize(player.getUniqueId()));
-    }
-
-    public void deserialize() {
-        Skills.getInstance().getServer().getOnlinePlayers().forEach(player -> deserialize(player.getUniqueId()));
     }
 
     public static double money(float experience) {

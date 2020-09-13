@@ -11,7 +11,7 @@ import java.util.Set;
 public enum SkillType {
     Archery(ChatColor.DARK_GREEN, 12.0f, null),
     COMBAT(ChatColor.RED, 7.8f, null),
-    FISHING(ChatColor.BLUE,  0.0f, null),
+    FISHING(ChatColor.BLUE,  78.0f, null),
     WOODCUTTING(ChatColor.GREEN, 6.4f, new HashSet<>(Arrays.asList(
             Material.ACACIA_LOG,
             Material.BIRCH_LOG,

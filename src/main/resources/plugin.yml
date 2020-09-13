@@ -3,6 +3,7 @@ main: com.ihusker.skills.Skills
 version: ALPHA
 api-version: 1.16
 author: iHusker
+depend: [Vault]
 
 commands:
   skills:

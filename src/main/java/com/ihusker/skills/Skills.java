@@ -6,6 +6,7 @@ import com.ihusker.skills.resources.managers.OptionManager;
 import com.ihusker.skills.resources.managers.SkillManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -39,7 +40,7 @@ public class Skills extends JavaPlugin {
             );
 
             optionManager.deserialize();
-            skillManager.deserialize();
+            getServer().getOnlinePlayers().forEach(this::deserialize);
         } else {
             getLogger().info("Disabling plugin as vault needs to be installed/enabled.");
             getServer().getPluginManager().disablePlugin(this);
@@ -48,7 +49,17 @@ public class Skills extends JavaPlugin {
 
     @EventHandler
     public void onDisable() {
-        if(economy != null) skillManager.serialize();
+        if(economy != null) getServer().getOnlinePlayers().forEach(this::serialize);
+    }
+
+    public void serialize(Player player) {
+        //Future serialization
+        skillManager.serialize(player);
+    }
+
+    public void deserialize(Player player) {
+        //Future deserialization
+        skillManager.deserialize(player);
     }
 
     private boolean setupEconomy() {
