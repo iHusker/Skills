@@ -4,7 +4,9 @@ import com.ihusker.skills.commands.SkillCommand;
 import com.ihusker.skills.listeners.*;
 import com.ihusker.skills.resources.managers.OptionManager;
 import com.ihusker.skills.resources.managers.SkillManager;
+import com.ihusker.skills.utilities.SkillsPlaceholderExpansion;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,6 +31,10 @@ public class Skills extends JavaPlugin {
         if(setupEconomy()) {
             PluginCommand pluginCommand = getCommand("skills");
             if (pluginCommand != null) pluginCommand.setExecutor(new SkillCommand(skillManager));
+
+            if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
+                new SkillsPlaceholderExpansion(skillManager).register();
+            }
 
             registerListeners(
                     new BlockListener(),

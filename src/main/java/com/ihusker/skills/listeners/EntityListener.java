@@ -22,7 +22,7 @@ public class EntityListener implements Listener {
 
         if (!(arrow.getShooter() instanceof Player)) return;
         Player player = (Player) arrow.getShooter();
-        Skills.getInstance().getSkillManager().update(player, SkillType.Archery);
+        Skills.getInstance().getSkillManager().update(player, SkillType.ARCHERY);
     }
 
     @EventHandler

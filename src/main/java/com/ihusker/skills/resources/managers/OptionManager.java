@@ -3,7 +3,6 @@ package com.ihusker.skills.resources.managers;
 import com.ihusker.skills.Skills;
 import com.ihusker.skills.resources.data.OptionData;
 import com.ihusker.skills.utilities.JsonStorage;
-import org.bukkit.entity.Player;
 
 public class OptionManager {
 

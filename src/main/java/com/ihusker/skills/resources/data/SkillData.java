@@ -3,6 +3,7 @@ package com.ihusker.skills.resources.data;
 import com.ihusker.skills.resources.managers.SkillManager;
 import com.ihusker.skills.resources.SkillType;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,5 +30,9 @@ public class SkillData {
     public boolean addExperience(SkillType skillType, float experience) {
         skills.merge(skillType, experience, Float::sum);
         return getExperience(skillType) + experience >= getExperienceNeeded(skillType);
+    }
+
+    public Map<SkillType, Float> getSkills() {
+        return Collections.unmodifiableMap(skills);
     }
 }

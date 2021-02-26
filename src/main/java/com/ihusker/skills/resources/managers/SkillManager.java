@@ -32,6 +32,22 @@ public class SkillManager {
         data.remove(uuid);
     }
 
+    public int getAverage(Player player) {
+        SkillData skillData = getData(player);
+        if(skillData == null) {
+            return 0;
+        } else {
+            int iteration = 0;
+            int total = 0;
+
+            for(SkillType skillType : skillData.getSkills().keySet()) {
+                iteration += 1;
+                total += skillData.getLevel(skillType);
+            }
+            return (total == 0) ? 0 : total / iteration;
+        }
+    }
+
     public static double money(float experience) {
         return Math.pow(CONSTANT, 3.2f) * experience;
     }
